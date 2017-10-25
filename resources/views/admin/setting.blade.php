@@ -1,20 +1,21 @@
- @extends('layouts.user.master')
+@extends('layouts.admin.master')
 
+@section('main-content')
 
- @section('main-content')
 
    @if(Session::has('message'))
 	   <span style="color:red">{{ Session::get('message') }}</span>
 	@endif
 	
 	<h3>Change Password</h3>
-	<form method="post" action="{{ route('settings.update',$userInfo->userId) }}">
+	<form method="post" action="{{ route('adminSettingUpdate',$userInfo->userId) }}">
 	  {{ csrf_field() }}
-	 <input type="hidden" name="_method" value="PUT">
+	  {{ method_field('PUT') }}
+
 			<table>
 				<tr>
 					<td>USERNAME: </td>
-					<td>{{ $userInfo->username  }}</td>
+					<td>{{ $userInfo->username }}</td>
 				</tr>
 				<tr>
 					<td>OLD PASSWORD: </td>
@@ -32,7 +33,7 @@
 					<td colspan="2">
 						<br/>
 						<center>
-							<a href="{{ route('userHome') }}">Back</a> | 
+							<a href="{{ route('adminHome') }}">Back</a> | 
 							<input type="submit" value="Update">
 						</center>
 					</td>
@@ -47,4 +48,4 @@
 		    @endforeach
 		 @endif
 
- @endsection
+@endsection

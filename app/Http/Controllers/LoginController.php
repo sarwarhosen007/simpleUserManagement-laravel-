@@ -32,13 +32,15 @@ class LoginController extends Controller
         	$userLastLoginUpdate->lastLogin = date("Y-m-d H:i:s");
         	$userLastLoginUpdate->save();
 
-        	 
-            Session()->put('userFullName', $userProfile->fullname);
-        	Session()->put('userId', $userProfile->userId);
-        	Session()->put('userLastLogin', $userLastLoginUpdate->lastLogin);
+            $request->session()->put('userFullName', $userProfile->fullname);
+            $request->session()->put('userId', $userProfile->userId);
+            $request->session()->put('userLastLogin', $userLastLoginUpdate->lastLogin);
+
             if($user->type == 'User'){
+
                 Session()->put('userAuth','Yes');
         	   return view('user.home');
+                      
             }else{
                 Session()->put('adminAuth','Yes');
                 return view('admin.home');

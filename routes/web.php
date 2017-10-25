@@ -36,9 +36,6 @@ Route::group(['middleware' => 'user'], function() {
 	// SettingController
 
 	Route::resource('user/settings','SettingsController');
-
-
-	Route::resource('/admin','AdminController');
     
 });
 
@@ -46,8 +43,14 @@ Route::group(['middleware' => 'user'], function() {
 
 Route::group(['middleware' => 'admin'], function() {
      
-    Route::get('admin/home','AdminHomeController@adminHome')->name('admin.home');
+    Route::get('admin/home/','AdminHomeController@adminHome')->name('adminHome');
+
 	Route::resource('/admin','AdminController');
+
+	Route::get('/setting/{id}','AdminSettingController@settingPageLoad')->name('adminSetting');
+	Route::post('/setting/upDateSetting','AdminSettingController@updateSett')->name('adminSettingUpdate');
+
+	Route::get('/report','ReportController@userReport')->name('userReport');
    
 });
  
