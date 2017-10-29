@@ -16,7 +16,8 @@ class AdminSettingController extends Controller
 
    public function updateSett(Request $request,$id)
    {
-   	return $id;
+   	  
+      return "Yes";
      $this->validate($request,[
             'oldPassword' =>'required',
             'newPassword' => 'bail | required | min:6',

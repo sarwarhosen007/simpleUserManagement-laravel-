@@ -48,7 +48,7 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::resource('/admin','AdminController');
 
 	Route::get('/setting/{id}','AdminSettingController@settingPageLoad')->name('adminSetting');
-	Route::post('/setting/upDateSetting','AdminSettingController@updateSett')->name('adminSettingUpdate');
+	Route::post('/updateSetting/{1}','AdminSettingController@updateSett');
 
 	Route::get('/report','ReportController@userReport')->name('userReport');
    

@@ -77,6 +77,7 @@ class SettingsController extends Controller
             'newPassword' => 'bail | required | min:6',
             'retypePassword' => 'bail | required | min:6 | same:newPassword',
             ]);
+         
          $userPassword = DB::table('users')
                          ->where('userId',$id)
                          ->value('password');

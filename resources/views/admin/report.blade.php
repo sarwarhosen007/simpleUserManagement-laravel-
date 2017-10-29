@@ -25,27 +25,25 @@
 				<th>TOTAL USER</th>
 				<th>DETAILS</th>
 			</tr>
-			@for($i = 0; $i<count($arr); $i++)
 				<tr>
 					<td>3 - 6 Months</td>
-					<td>1</td>
+					<td>{{ $arr[0] }}</td>
 					<td><a href="#">Details</a></td>
 				</tr>
 				<tr>
 					<td>6 - 9 Months</td>
-					<td>0</td>
+					<td>{{ $arr[1] }}</td>
 					<td><a href="#">Details</a></td>
 				</tr>
 				<tr>
 					<td>9 - 12 Months</td>
-					<td>0</td>
+					<td>{{ $arr[2] }}</td>
 					<td><a href="#">Details</a></td>
 				</tr>
 				<tr>
 					<td>More than 12 Months</td>
-					<td>1</td>
+					<td>{{ $arr[3] }}</td>
 					<td><a href="#">Details</a></td>
 				</tr>
-			@endfor
 		</table>
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use DB;
-
+use Carbon\Carbon;
 class ReportController extends Controller
 {
      public function userReport()
@@ -15,21 +15,31 @@ class ReportController extends Controller
      	$usercount = User::where('type','User')->count();
 
      	$userLastLogin = User::all();
-     	$i = 0;
-     	$arr = [];
+          $arr = [];
+          $threeToSix = $sixToNinth = $nintoTwleve = $moreThenTwelve = 0;
      	foreach ($userLastLogin as $date) {
 
-     		$arr[$i++] = date('m',strtotime($date)); 
-     	}
-     	for($i = 0; $i<count($arr); $i++){
-     		if(($i - date('m') <= 6 )){
-     			$threetoSix++;
-     		}
-     	}
-           	return view('admin.report')
-     				->with('admincount',$admincount)
-     				->with('usercount',$usercount)
-     				->with('arr',$arr);
-     	}
+               $to = Carbon::createFromFormat('Y-m-d H:s:i', $date->lastLogin);
+               $from =Carbon::now();
+               $month = $to->diffInMonths($from);
+               if(($month <= 6) && ($month >=3) ){
+                 $threeToSix++;
+               }elseif (($month <= 9) && ($month >6) ) {
+                    $sixToNinth++;
+               }elseif (($month <= 12) && ($month >9) ) {
+                    $nintoTwleve++;
+               }elseif (($month > 12)) {
+                    $moreThenTwelve++;
+               }
+     	} 
+          $arr[0] = $threeToSix; 
+          $arr[1] = $sixToNinth; 
+          $arr[2] = $nintoTwleve; 
+          $arr[3] = $moreThenTwelve; 
+          
+      	return view('admin.report')
+				->with('admincount',$admincount)
+				->with('usercount',$usercount)
+				->with('arr',$arr);
      }
 }

@@ -8,9 +8,9 @@
 	@endif
 	
 	<h3>Change Password</h3>
-	<form method="post" action="{{ route('adminSettingUpdate',$userInfo->userId) }}">
+	<form method="post" action="{{ url('updateSetting',$userInfo->userId) }}">
 	  {{ csrf_field() }}
-	  {{ method_field('PUT') }}
+	 <input type="hidden" name="_method" value="PUT">
 
 			<table>
 				<tr>
